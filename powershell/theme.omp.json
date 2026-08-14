@@ -1,0 +1,194 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "_palette": {
+    "_note": "Gruvbox Dark — base palette from ~/.dotfiles_win/alacritty/themes/gruvbox_dark.toml",
+    "background":      "#282828",
+    "background_hard": "#1d2021",
+    "background_soft": "#32302f",
+    "foreground":      "#ebdbb2",
+    "normal": {
+      "black":   "#282828",
+      "red":     "#cc241d",
+      "green":   "#98971a",
+      "yellow":  "#d79921",
+      "blue":    "#458588",
+      "magenta": "#b16286",
+      "cyan":    "#689d6a",
+      "white":   "#a89984"
+    },
+    "bright": {
+      "black":   "#928374",
+      "red":     "#fb4934",
+      "green":   "#b8bb26",
+      "yellow":  "#fabd2f",
+      "blue":    "#83a598",
+      "magenta": "#d3869b",
+      "cyan":    "#8ec07c",
+      "white":   "#ebdbb2"
+    },
+    "_usage": {
+      "os_segment":        "bg: bright.blue (#458588), fg: foreground (#32302f)",
+      "path_segment":      "bg: dark gray (#504945), fg: foreground (#ebdbb2)",
+      "git_clean":         "bg: normal.green (#98971a)",
+      "git_modified":      "bg: normal.yellow (#d79921)",
+      "git_diverged":      "bg: normal.red (#cc241d)",
+      "git_ahead_behind":  "bg: normal.magenta (#b16286)",
+      "time":              "bg: bright.black (#928374), fg: background (#282828)",
+      "executiontime":     "bg: transparent, fg: normal.white (#a89984)"
+    }
+  },
+  "blocks": [
+    {
+      "alignment": "right",
+      "segments": [
+        {
+          "background": "transparent",
+          "foreground": "#a89984",
+          "options": {
+            "always_enabled": true
+          },
+          "style": "plain",
+          "template": " \ueba2 {{ .FormattedMs }} ",
+          "type": "executiontime"
+        },
+        {
+          "background": "#928374",
+          "foreground": "#282828",
+          "style": "plain",
+          "template": " \ue641 {{ .CurrentDate | date .Format }} ",
+          "type": "time"
+        }
+      ],
+      "type": "rprompt"
+    },
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "background": "#458588",
+          "foreground": "#32302f",
+          "style": "powerline",
+          "template": "{{ if .WSL }}WSL at{{ end }} {{.Icon}} ",
+          "type": "os"
+        },
+        {
+          "background": "#504945",
+          "foreground": "#ebdbb2",
+          "powerline_symbol": "\ue0b0",
+          "options": {
+            "style": "full"
+          },
+          "style": "powerline",
+          "template": " {{ .Path }} ",
+          "type": "path"
+        },
+        {
+          "background": "#98971a",
+          "background_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}#d79921{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#cc241d{{ end }}",
+            "{{ if gt .Ahead 0 }}#b16286{{ end }}",
+            "{{ if gt .Behind 0 }}#b16286{{ end }}"
+          ],
+          "foreground": "#282828",
+          "leading_diamond": "\ue0b6",
+          "powerline_symbol": "\ue0b0",
+          "options": {
+            "branch_template": "{{ trunc 25 .Branch }}",
+            "fetch_status": true,
+            "branch_icon": "\uE0A0 ",
+            "branch_identical_icon": "\u25CF"
+          },
+          "style": "powerline",
+          "template": " {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} ",
+          "trailing_diamond": "\ue0b4",
+          "type": "git"
+        },
+        {
+          "background": "#83a598",
+          "foreground": "#282828",
+          "powerline_symbol": "\ue0b0",
+          "options": {
+            "fetch_version": true
+          },
+          "style": "powerline",
+          "template": " \ue626 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} ",
+          "type": "go"
+        },
+        {
+          "background": "#b16286",
+          "foreground": "#282828",
+          "powerline_symbol": "\ue0b0",
+          "options": {
+            "fetch_version": true
+          },
+          "style": "powerline",
+          "template": " \ue624 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} ",
+          "type": "julia"
+        },
+        {
+          "background": "#fabd2f",
+          "foreground": "#282828",
+          "powerline_symbol": "\ue0b0",
+          "options": {
+            "display_mode": "files",
+            "fetch_virtual_env": false
+          },
+          "style": "powerline",
+          "template": " \ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} ",
+          "type": "python"
+        },
+        {
+          "background": "#cc241d",
+          "foreground": "#ebdbb2",
+          "powerline_symbol": "\ue0b0",
+          "options": {
+            "display_mode": "files",
+            "fetch_version": true
+          },
+          "style": "powerline",
+          "template": " \ue791 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} ",
+          "type": "ruby"
+        },
+        {
+          "background": "#d79921",
+          "foreground": "#282828",
+          "powerline_symbol": "\ue0b0",
+          "options": {
+            "display_mode": "files",
+            "fetch_version": false
+          },
+          "style": "powerline",
+          "template": " \uf0e7{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} ",
+          "type": "azfunc"
+        },
+        {
+          "background_templates": [
+            "{{if contains \"default\" .Profile}}#d79921{{end}}",
+            "{{if contains \"jan\" .Profile}}#fb4934{{end}}"
+          ],
+          "foreground": "#282828",
+          "powerline_symbol": "\ue0b0",
+          "options": {
+            "display_default": false
+          },
+          "style": "powerline",
+          "template": " \ue7ad {{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }} ",
+          "type": "aws"
+        },
+        {
+          "background": "#fb4934",
+          "foreground": "#282828",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": " \uf0ad ",
+          "type": "root"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "console_title_template": "{{ .Folder }}",
+  "final_space": true,
+  "version": 4
+}

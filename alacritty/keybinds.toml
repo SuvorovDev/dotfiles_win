@@ -1,0 +1,26 @@
+[keyboard]
+bindings = [
+  # --- Disable default ---
+  { key = "C",        mods = "Control|Shift", action = "None" },
+  { key = "V",        mods = "Control|Shift", action = "None" },
+  { key = "=",        mods = "Control|Shift", action = "None" },
+  { key = "-",        mods = "Control",       action = "None" },
+  { key = "0",        mods = "Control",       action = "None" },
+  { key = "PageUp",   mods = "Control|Shift", action = "None" },
+  { key = "PageDown", mods = "Control|Shift", action = "None" },
+  { key = "Home",     mods = "Control|Shift", action = "None" },
+  { key = "End",      mods = "Control|Shift", action = "None" },
+
+  # --- Scancode bindings ---
+  { key = 46, mods = "Control|Shift", action = "Copy"  },  # key: C
+  { key = 47, mods = "Control|Shift", action = "Paste" },  # key: V
+
+  { key = 13, mods = "Control|Shift", action = "IncreaseFontSize" },  # key: =
+  { key = 12, mods = "Control",       action = "DecreaseFontSize" },  # key: -
+  { key = 11, mods = "Control",       action = "ResetFontSize"    },  # key: 0
+
+  { key = 73, mods = "Control|Shift", action = "ScrollPageUp"    },  # key: PageUp
+  { key = 81, mods = "Control|Shift", action = "ScrollPageDown"  },  # key: PageDown
+  { key = 71, mods = "Control|Shift", action = "ScrollToTop"     },  # key: Home
+  { key = 79, mods = "Control|Shift", action = "ScrollToBottom"  },  # key: End
+]

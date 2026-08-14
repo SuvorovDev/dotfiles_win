@@ -1,0 +1,22 @@
+Git.Git
+Alacritty.Alacritty
+Microsoft.PowerShell
+JanDeDobbeleer.OhMyPosh
+eza-community.eza
+
+Neovim.Neovim
+Zig.Zig
+arndawg.tmux-windows
+
+# === YAZI
+sxyazi.yazi
+## optional dependencies (recommended):
+Gyan.FFmpeg
+7zip.7zip
+jqlang.jq
+oschwartz10612.Poppler
+sharkdp.fd
+BurntSushi.ripgrep.MSVC
+junegunn.fzf
+ajeetdsouza.zoxide
+ImageMagick.ImageMagick

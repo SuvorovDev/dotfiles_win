@@ -1,0 +1,6 @@
+# folder       = target path
+# Lines starting with # are ignored
+
+powershell     = %USERPROFILE%\Documents\PowerShell
+nvim           = %USERPROFILE%\AppData\Local\nvim
+alacritty      = %APPDATA%\alacritty
