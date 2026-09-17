@@ -1,6 +1,10 @@
-# folder       = target path
 # Lines starting with # are ignored
+# folder       = target path
 
 powershell     = %USERPROFILE%\Documents\PowerShell
 nvim           = %USERPROFILE%\AppData\Local\nvim
 alacritty      = %APPDATA%\alacritty
+
+# Single-file configs:
+
+tmux\tmux.conf = %USERPROFILE%\.tmux.conf
