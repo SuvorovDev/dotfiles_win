@@ -32,27 +32,29 @@ for /f "usebackq tokens=1,* delims==" %%A in ("%PATHS_FILE%") do (
         REM Expand environment variables in target path (e.g. %APPDATA%)
         call set "TARGET_EXP=!TARGET!"
 
-        set "IS_DIR=0"
-        set "IS_FILE=0"
+        set "SOURCE_OK=0"
+        set "LINK_TYPE="
         if exist "!SOURCE!\" (
-            set "IS_DIR=1"
+            set "SOURCE_OK=1"
+            set "LINK_TYPE=DIR"
         ) else if exist "!SOURCE!" (
-            set "IS_FILE=1"
+            set "SOURCE_OK=1"
+            set "LINK_TYPE=FILE"
         )
 
-        if "!IS_DIR!"=="0" if "!IS_FILE!"=="0" (
+        if "!SOURCE_OK!"=="0" (
             echo [SKIP]  !FOLDER! -- source not found: !SOURCE!
         ) else if exist "!TARGET_EXP!" (
             echo [SKIP]  !FOLDER! -- target already exists: !TARGET_EXP!
         ) else (
-            if "!IS_DIR!"=="1" (
+            if "!LINK_TYPE!"=="DIR" (
                 mklink /J "!TARGET_EXP!" "!SOURCE!" >nul 2>&1
             ) else (
                 mklink "!TARGET_EXP!" "!SOURCE!" >nul 2>&1
             )
             if !errorlevel! equ 0 (
                 echo [OK]    !FOLDER! --^> !TARGET_EXP!
-            ) else if "!IS_DIR!"=="1" (
+            ) else if "!LINK_TYPE!"=="DIR" (
                 echo [FAIL]  !FOLDER! -- failed to create junction at: !TARGET_EXP!
             ) else (
                 echo [FAIL]  !FOLDER! -- failed to create file symlink at: !TARGET_EXP! ^(needs admin rights or Developer Mode^)
